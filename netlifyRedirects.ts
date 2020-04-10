@@ -4,6 +4,6 @@ export type NetlifyRedirect = {
     to: string
     status: number
 }
-export function toString(redirect: NetlifyRedirect): string {
+export function NetlifyRedirectToString(redirect: NetlifyRedirect): string {
     return redirect.from + "\t\t" + redirect.to + "\t" + redirect.status
 }

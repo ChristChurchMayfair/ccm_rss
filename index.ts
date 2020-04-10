@@ -11,7 +11,7 @@ import { Episode } from './episode'
 
 import LondonLivingData from './londonLivingEpisodeData.json'
 import { RemoveAndRecreateDirectory, writeToFile } from './fileFunctions'
-import { NetlifyRedirect, netlifyRedirectFilename } from './netlifyRedirects'
+import { NetlifyRedirect, netlifyRedirectFilename, NetlifyRedirectToString } from './netlifyRedirects'
 
 const GRAPHQL_ENDPOINT = "https://api.graph.cool/simple/v1/cjkqvvoxy2pyy0175cdmdy1mz"
 
@@ -83,7 +83,7 @@ var netlifyRedirects: NetlifyRedirect[] = [
     { from: '/londonLiving', to: '/londonLiving.xml', status: 200 }
 ]
 
-writeToFile(netlifyRedirects.map(toString).join("\n"), publishDirectory, netlifyRedirectFilename)
+writeToFile(netlifyRedirects.map(NetlifyRedirectToString).join("\n"), publishDirectory, netlifyRedirectFilename)
 
 const londonLivingXml = generateXml();
 writeToFile(londonLivingXml, publishDirectory, "londonLiving.xml");
