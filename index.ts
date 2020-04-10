@@ -86,7 +86,7 @@ var netlifyRedirects: NetlifyRedirect[] = [
 writeToFile(netlifyRedirects.map(toString).join("\n"), publishDirectory, netlifyRedirectFilename)
 
 const londonLivingXml = generateXml();
-writeToFile(londonLivingXml, publishDirectory, londonLivingXml);
+writeToFile(londonLivingXml, publishDirectory, "londonLiving.xml");
 
 graphqlSermonsResult.then((result) => {
     const sermons = result.data.allSermons.map((s: any) => parseSermon(s))
