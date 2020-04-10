@@ -80,13 +80,13 @@ RemoveAndRecreateDirectory(publishDirectory)
 
 var netlifyRedirects: NetlifyRedirect[] = [
     { from: '/', to: '/sermons.xml', status: 200 },
-    { from: '/londonLiving', to: '/londonLiving.xml', status: 200 }
+    { from: '/londonliving', to: '/londonliving.xml', status: 200 }
 ]
 
 writeToFile(netlifyRedirects.map(NetlifyRedirectToString).join("\n"), publishDirectory, netlifyRedirectFilename)
 
 const londonLivingXml = generateXml();
-writeToFile(londonLivingXml, publishDirectory, "londonLiving.xml");
+writeToFile(londonLivingXml, publishDirectory, "londonliving.xml");
 
 graphqlSermonsResult.then((result) => {
     const sermons = result.data.allSermons.map((s: any) => parseSermon(s))
