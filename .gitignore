@@ -1,0 +1,6 @@
+dist/
+public/
+*.rss
+*.xml
+*.log
+node_modules/
