@@ -113,7 +113,7 @@ export function parseSermonFromSanityResponse(sanitySermon: any): Sermon {
         seriesTitle: sanitySermon.series.name,
         seriesSubtitle: sanitySermon.series.subtitle,
         preachedAt: sanitySermon.preachedAt,
-        duration: sanitySermon.durationInMinutes,
+        duration: sanitySermon.durationInSeconds,
         link: sanitySermon.url,
         author: sanitySermon.speakers[0].name,
         event: sanitySermon.event.name
