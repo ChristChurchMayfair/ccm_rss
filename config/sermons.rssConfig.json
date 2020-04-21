@@ -2,6 +2,7 @@
     "title": "Christ Church Mayfair – Podcast",
     "description": "Listen to recent sermons",
     "author": "Christ Church Mayfair",
+    "feedUrl": "https://rss.christchurchmayfair.org",
     "email": "info@christchurchmayfair.org",
     "mainSiteUrl": "https://christchurchmayfair.org",
     "imageUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/series-images/ccm-logo-square-large.png",

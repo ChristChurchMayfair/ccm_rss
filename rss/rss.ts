@@ -15,6 +15,7 @@ export type RssChannelConfig = {
     description: string,
     author: string,
     email: string,
+    feedUrl: string,
     mainSiteUrl: string
     imageUrl: string,
     copyright: string,
@@ -53,6 +54,7 @@ export const createXml = (episodes: Episode[], now: Date, config: RssChannelConf
     rss.att(rssAttributes)
 
     const channel = rss.ele("channel")
+    channel.ele("atom:link", {href: config.feedUrl, rel: "self", type:"application/rss+xml"})
     channel.ele("title", config.title)
     channel.ele("link", config.mainSiteUrl)
     channel.ele("description", config.description)
