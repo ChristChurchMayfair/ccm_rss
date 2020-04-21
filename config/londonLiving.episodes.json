@@ -1,0 +1,47 @@
+[
+    {
+        "title": "Performance & Pressure",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Norman-10mins_v3.1.mp3",
+        "description": "Norman, a senior executive for an international energy company, speaks about the performance culture of the work place.",
+        "releaseDate": "2019-05-02T12:00:00.000Z",
+        "durationInSeconds": 762,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "title": "Control & Physical Safety",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Connie-10mins_v2.mp3",
+        "description": "Connie speaks about our desire for personal control and the impact of insecurity on mental health.",
+        "releaseDate": "2019-05-09T00:00:00.001Z",
+        "durationInSeconds": 566,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "title": "Self Fulfillment & Legacy",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Jesse-10mins_v2.mp3",
+        "description": "Jesse, entrepreneur and business owner, speaks on the desire for fulfillment through personal success.",
+        "releaseDate": "2019-05-16T00:00:00.001Z",
+        "durationInSeconds": 526,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    }
+]

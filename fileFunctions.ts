@@ -10,8 +10,8 @@ export function RemoveAndRecreateDirectory(directoryPath: string) {
 
 export function writeToFile(content: string, directory: string, filename: string) {
     const path = directory + '/' + filename
-    fs.writeFile(path, content, function (err) {
+    fs.writeFile(path, content, (err) => {
         if (err) throw err;
         console.log('Saved data to ' + path);
-    });    
+    });
 }

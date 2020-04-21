@@ -12,10 +12,12 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "generate_rss": "npx ./dist/index.js",
-    "build_and_generate": "npx tsc && npx ./dist/index.js"
+    "generate_rss": "npx ./dist/main.js",
+    "build_and_generate": "npx tsc && npx ./dist/main.js",
+    "export_graphcool_to_sanity_ndjson": "npx tsc && npx ./dist/export_graphcool_to_sanity_ndjson.js"
   },
   "dependencies": {
+    "@sanity/client": "^1.149.7",
     "@types/date-fns": "^2.6.0",
     "@types/node-fetch": "^2.5.5",
     "@types/rimraf": "^3.0.0",

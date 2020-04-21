@@ -4,3 +4,5 @@ public/
 *.xml
 *.log
 node_modules/
+scripts/*.xml
+export/

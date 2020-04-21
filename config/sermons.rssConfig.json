@@ -1,0 +1,23 @@
+{
+    "title": "Christ Church Mayfair – Podcast",
+    "description": "Listen to recent sermons",
+    "author": "Christ Church Mayfair",
+    "email": "info@christchurchmayfair.org",
+    "mainSiteUrl": "https://christchurchmayfair.org",
+    "imageUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/series-images/ccm-logo-square-large.png",
+    "copyright": "(C) Christ Church Mayfair 2018",
+    "defaultEpisodeImageUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/series-images/series_default_new-620x400.png",
+    "category":
+    {
+        "major": "Religion & Spirituality",
+        "sub": "Christianity"
+    },
+    "explicit": false,
+    "rating": "nonadult",
+    "generator": "Static RSS Generator",
+    "language": "en-US",
+    "customNamespace": {
+        "name": "xmlns:ccm",
+        "url": "http://christchurchmayfair.org/"
+    }
+}
