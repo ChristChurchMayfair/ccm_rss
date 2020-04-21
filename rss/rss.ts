@@ -45,6 +45,7 @@ export const createXml = (episodes: Episode[], now: Date, config: RssChannelConf
     const rss = builder.create("rss")
     const rssAttributes: any = {
         version: "2.0",
+        "xmlns:atom": "http://www.w3.org/2005/Atom",
         "xmlns:media": "http://search.yahoo.com/mrss/",
         "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
     }
@@ -54,7 +55,7 @@ export const createXml = (episodes: Episode[], now: Date, config: RssChannelConf
     rss.att(rssAttributes)
 
     const channel = rss.ele("channel")
-    channel.ele("atom:link", {href: config.feedUrl, rel: "self", type:"application/rss+xml"})
+    channel.ele("atom:link", { href: config.feedUrl, rel: "self", type: "application/rss+xml" })
     channel.ele("title", config.title)
     channel.ele("link", config.mainSiteUrl)
     channel.ele("description", config.description)
