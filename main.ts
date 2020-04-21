@@ -27,21 +27,11 @@ writeToFile(netlifyRedirects.map(NetlifyRedirectToString).join("\n"), publishDir
 const londonLivingXml = createXml(LondonLivingData, new Date(), londonLivingRssConfig);
 writeToFile(londonLivingXml, publishDirectory, "londonliving.xml");
 
-// Create Sermon RSS from Graphcool
-graphqlClient.query({ query: sermonsQuery })
-    .then((result) => result.data.allSermons.map(parseSermonFromGraphqlReponse))
-    .then(sermons => sermons.map(convertSermonToEpisode))
-    .then(episodes => writeEpisodesToFile(ccmSermonsRssConfig, episodes, publishDirectory, "sermons.xml"))
-    .catch((error) => {
-        console.log("There was an error fetching the sermon data from graphcool")
-        process.exit(1) // Exit with non zero error code to indicate this should not be published.
-    })
-
-// Create sermons RSS from Sanity also
+// Create sermons RSS from Sanity
 ccmSanityClient.fetch(sanitySermonQuery)
     .then(result => result.map(parseSermonFromSanityResponse))
     .then(sermons => sermons.map(convertSermonToEpisode))
-    .then(episodes => writeEpisodesToFile(ccmSermonsRssConfig, episodes, publishDirectory, "sanitysermons.xml")
+    .then(episodes => writeEpisodesToFile(ccmSermonsRssConfig, episodes, publishDirectory, "sermons.xml")
     ).catch((error) => {
         console.log("There was an error fetching the sermon data from sanity")
         process.exit(1) // Exit with non zero error code to indicate this should not be published.
