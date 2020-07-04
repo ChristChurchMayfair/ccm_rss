@@ -1,7 +1,5 @@
-import { parseSermonFromGraphqlReponse, parseSermonFromSanityResponse, convertSermonToEpisode } from "./sermon"
+import { parseSermonFromSanityResponse, convertSermonToEpisode } from "./sermon"
 import { createXml, writeEpisodesToFile } from './rss/rss'
-
-import { sermonsQuery, graphqlClient } from './ccm_graphql_client'
 
 import { ccmSanityClient, sanitySermonQuery } from './ccm_sanity_client'
 

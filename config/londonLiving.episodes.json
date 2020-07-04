@@ -1,5 +1,6 @@
 [
     {
+        "season": 1,
         "title": "Performance & Pressure",
         "author": "Christ Church Mayfair",
         "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Norman-10mins_v3.1.mp3",
@@ -15,6 +16,7 @@
         ]
     },
     {
+        "season": 1,
         "title": "Control & Physical Safety",
         "author": "Christ Church Mayfair",
         "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Connie-10mins_v2.mp3",
@@ -30,11 +32,63 @@
         ]
     },
     {
+        "season": 1,
         "title": "Self Fulfillment & Legacy",
         "author": "Christ Church Mayfair",
         "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Jesse-10mins_v2.mp3",
         "description": "Jesse, entrepreneur and business owner, speaks on the desire for fulfillment through personal success.",
         "releaseDate": "2019-05-16T00:00:00.001Z",
+        "durationInSeconds": 526,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "embargoed": true,
+        "season": 2,
+        "title": "Peace of Mind",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/OllieLansdowne_v5.1.mp3",
+        "description": "Ollie, threatened by a dangerous heart condition, speaks about finding peace of mind in the face of uncertainty.",
+        "releaseDate": "2020-07-10T00:00:00.001Z",
+        "durationInSeconds": 541,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "embargoed": true,
+        "season": 2,
+        "title": "Death & Loss",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/PhilAllcock_v3.1.mp3",
+        "description": "Phil shares his experiences following the sudden death of his brother in a military accident.",
+        "releaseDate": "2020-07-17T00:00:00.001Z",
+        "durationInSeconds": 626,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "embargoed": true,
+        "season": 2,
+        "title": "Mental Health & Resilience",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/??????",
+        "description": "PJ, a digital marketing consultant and business owner, speaks about finding security through his battles with depression.",
+        "releaseDate": "2020-07-17T00:00:00.001Z",
         "durationInSeconds": 526,
         "keywords": [
             "Christ Church Mayfair",
