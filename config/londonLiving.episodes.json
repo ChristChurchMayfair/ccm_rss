@@ -80,13 +80,12 @@
         ]
     },
     {
-        "embargoed": true,
         "season": 2,
-        "title": "Mental Health & Resilience",
+        "title": "Racism & Injustice",
         "author": "Christ Church Mayfair",
-        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/??????",
-        "description": "PJ, a digital marketing consultant and business owner, speaks about finding security through his battles with depression.",
-        "releaseDate": "2020-07-17T00:00:00.001Z",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/VeraOsei_v3.mp3",
+        "description": "In this extended episode Vera shares her experience of racism and injustice.",
+        "releaseDate": "2020-08-07T00:00:00.001Z",
         "durationInSeconds": 526,
         "keywords": [
             "Christ Church Mayfair",
