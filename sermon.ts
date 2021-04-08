@@ -146,8 +146,14 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
     }
     customElements['ccm:event'] = sermon.event
 
+    const title = (() => {
+        if (sermon.passage != null) {
+            return `${sermon.passage} – ${sermon.title}`
+        }
+        return sermon.title
+    })()
     return {
-        title: sermon.title,
+        title,
         mediaUrl: sermon.link,
         description: description,
         imageUrl: sermon.imageUrl,
