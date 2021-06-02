@@ -94,5 +94,37 @@
             "Living",
             "London:Living"
         ]
+    },
+    {
+        "season": 3,
+        "title": "Mental Health & Resilience",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/PJAppleton.mp3",
+        "description": "PJ, a business owner, speaks about our desire for resilience in the struggle with mental health.",
+        "releaseDate": "2021-06-02T12:00:00.000Z",
+        "durationInSeconds": 1526,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
+    },
+    {
+        "season": 3,
+        "title": "Fighting Inequality",
+        "author": "Christ Church Mayfair",
+        "mediaUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/londonliving/Penny.mp3",
+        "description": "Penny, an equal rights advocate, speaks of our longing to create a fairer society and the challenges we face in fighting for it.",
+        "releaseDate": "2021-06-02T12:00:00.000Z",
+        "durationInSeconds": 1475,
+        "keywords": [
+            "Christ Church Mayfair",
+            "CCM",
+            "London",
+            "Living",
+            "London:Living"
+        ]
     }
 ]
