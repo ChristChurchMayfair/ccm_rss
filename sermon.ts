@@ -37,7 +37,7 @@ export type Sermon = {
     preachedAt: string;
     duration: number | null;
     link: string;
-    speakers: string[];
+    speakers: { name: string; jobTitle: string | null }[];
     event: string | null;
 };
 
@@ -56,7 +56,13 @@ export function parseSermonFromSanityResponse(
         preachedAt: sanitySermon.preachedAt,
         duration: sanitySermon.durationInSeconds ?? null,
         link: sanitySermon.url,
-        speakers: sanitySermon.speakers?.map((s) => s.name) ?? [],
+        speakers:
+            sanitySermon.speakers?.map((s) => {
+                return {
+                    name: s.name,
+                    jobTitle: s.jobTitle ?? null,
+                };
+            }) ?? [],
         event: sanitySermon.event?.name ?? null,
         passages: sanitySermon.passages ?? [],
     };
@@ -75,7 +81,16 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
     const passageSummary =
         sermon.passages.length > 0 ? sermon.passages.join(", ") : null;
     const speakerSummary =
-        sermon.speakers.length > 0 ? sermon.speakers.join(", ") : null;
+        sermon.speakers.length > 0
+            ? sermon.speakers
+                  .map((s) => {
+                      if (s.jobTitle != null) {
+                          return `${s.name} (${s.jobTitle})`;
+                      }
+                      return s.name;
+                  })
+                  .join(", ")
+            : null;
 
     const description = joinNonNullish(
         [
@@ -126,10 +141,10 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
         releaseDate: sermon.preachedAt,
         keywords: [
             "Sermon",
-            speakerSummary,
+            sermon.speakers.map((s) => s.name).join(", "),
             sermon.event,
             longSeriesTitle,
-        ].filter((a): a is string => a != null),
+        ].filter((a): a is string => a != null && a !== ""),
         customElements,
     };
 }
