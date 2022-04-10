@@ -8,8 +8,7 @@
     "imageUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/series-images/ccm-logo-square-large.png",
     "copyright": "(C) Christ Church Mayfair 2022",
     "defaultEpisodeImageUrl": "https://s3-eu-west-1.amazonaws.com/media.christchurchmayfair.org/series-images/series_default_new-620x400.png",
-    "category":
-    {
+    "category": {
         "major": "Religion & Spirituality",
         "sub": "Christianity"
     },
