@@ -139,7 +139,7 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
             // a reasonable compromise.
             return sermon.title;
         }
-        return `${sermon.title} – ${passageSummary}`;
+        return `${sermon.title} (${passageSummary})`;
     })();
     return {
         title,
