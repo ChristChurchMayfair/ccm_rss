@@ -1,11 +1,11 @@
 import { Episode } from "./rss/episode"
 
-export type SanityRef = {
+type SanityRef = {
     _ref: string,
     _type: string
 }
 
-export type SanitySermon = {
+type SanitySermon = {
     _id: string,
   _type: string,
   durationInSeconds: number,
@@ -18,7 +18,7 @@ export type SanitySermon = {
   url: string
 }
 
-export type BasicSermon = {
+type BasicSermon = {
     id: string,
     title: string,
     passage?: string,
@@ -28,49 +28,6 @@ export type BasicSermon = {
     link: string,
     authorIds: string[],
     eventId: string,
-}
-
-export function parseBasicSermonFromGraphqlReponse(sermon: any): BasicSermon | undefined {
-    return {
-        id: sermon.id,
-        title: sermon.name,
-        passage: sermon.passage,
-        seriesId: sermon.series.id,
-        preachedAt: sermon.preachedAt,
-        durationInSeconds: sermon.duration,
-        link: sermon.url,
-        authorIds: sermon.speakers.map((s: any) => s.id),
-        eventId: sermon.event.id
-    }
-}
-
-export function convertBasicSermonToRawSanityObject(sermon: BasicSermon): any {
-    return {
-        _id: sermon.id,
-        _type: "sermon",
-        durationInSeconds: sermon.durationInSeconds,
-        event: {
-            _ref: sermon.eventId,
-            _type: "reference"
-        },
-        passages: [
-            sermon.passage
-        ],
-        preachedAt: sermon.preachedAt,
-        series: {
-            _ref: sermon.seriesId,
-            _type: "reference"
-        },
-        speakers: sermon.authorIds.map(id => {
-            return {
-                _ref: id,
-                _type: "reference"
-            }
-        }
-        ),
-        title: sermon.title,
-        url: sermon.link
-    }
 }
 
 export type Sermon = {
@@ -85,25 +42,6 @@ export type Sermon = {
     imageUrl?: string,
     author: string,
     event: string,
-}
-
-export function parseSermonFromGraphqlReponse(sermon: any): Sermon | undefined {
-    if (sermon.speakers.length === 0) {
-        return undefined
-    }
-    return {
-        id: sermon.id,
-        title: sermon.name,
-        passage: sermon.passage,
-        seriesTitle: sermon.series.name,
-        seriesSubtitle: sermon.series.subtitle || null,
-        preachedAt: sermon.preachedAt,
-        duration: sermon.duration,
-        link: sermon.url,
-        imageUrl: sermon.series.image3x2Url || null,
-        author: sermon.speakers[0].name,
-        event: sermon.event.name,
-    }
 }
 
 export function parseSermonFromSanityResponse(sanitySermon: any): Sermon {
