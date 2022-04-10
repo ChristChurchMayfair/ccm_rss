@@ -127,10 +127,19 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
     })();
 
     const title = (() => {
-        if (passageSummary != null) {
-            return `${sermon.title} – ${passageSummary}`;
+        if (passageSummary == null) {
+            return sermon.title;
         }
-        return sermon.title;
+        if (
+            passageSummary.toLocaleLowerCase() ===
+            sermon.title.toLocaleLowerCase()
+        ) {
+            // Occasionally they are identical. While it'd be better to fix
+            // the underlying data, this isn't always practical so this is
+            // a reasonable compromise.
+            return sermon.title;
+        }
+        return `${sermon.title} – ${passageSummary}`;
     })();
     return {
         title,
