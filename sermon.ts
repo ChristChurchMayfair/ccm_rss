@@ -8,82 +8,135 @@ type SanityRef = {
 type SanitySermon = {
     _id: string;
     _type: string;
-    durationInSeconds: number;
-    event: SanityRef;
-    passages: string[];
+    durationInSeconds?: number;
+    event?: {
+        name: string;
+    };
+    passages?: string[];
     preachedAt: string;
-    series: SanityRef;
-    speakers: SanityRef[];
+    series?: {
+        name: string;
+        subtitle?: string;
+        imageUrl?: string;
+    };
+    speakers?: {
+        name: string;
+        jobTitle?: string;
+    }[];
     title: string;
     url: string;
 };
 
 export type Sermon = {
-    id: string;
     title: string;
-    passage?: string;
-    seriesTitle: string;
-    seriesSubtitle?: string;
+    passages: string[];
+    series: {
+        title: string;
+        subtitle: string | null;
+    } | null;
     preachedAt: string;
-    duration: number;
+    duration: number | null;
     link: string;
-    author: string;
-    event: string;
+    speakers: string[];
+    event: string | null;
 };
 
-export function parseSermonFromSanityResponse(sanitySermon: any): Sermon {
+export function parseSermonFromSanityResponse(
+    sanitySermon: SanitySermon
+): Sermon {
     return {
-        id: sanitySermon.id,
         title: sanitySermon.title,
-        seriesTitle: sanitySermon.series.name,
-        seriesSubtitle: sanitySermon.series.subtitle,
+        series:
+            sanitySermon.series != null
+                ? {
+                      title: sanitySermon.series.name,
+                      subtitle: sanitySermon.series.subtitle ?? null,
+                  }
+                : null,
         preachedAt: sanitySermon.preachedAt,
-        duration: sanitySermon.durationInSeconds,
+        duration: sanitySermon.durationInSeconds ?? null,
         link: sanitySermon.url,
-        author: sanitySermon.speakers[0].name,
-        event: sanitySermon.event.name,
+        speakers: sanitySermon.speakers?.map((s) => s.name) ?? [],
+        event: sanitySermon.event?.name ?? null,
+        passages: sanitySermon.passages ?? [],
     };
 }
 
 export function convertSermonToEpisode(sermon: Sermon): Episode {
-    var longSeriesTitle = sermon.seriesTitle;
-    if (sermon.seriesSubtitle) {
-        longSeriesTitle = longSeriesTitle + ": " + sermon.seriesSubtitle;
-    }
+    const longSeriesTitle = ((): string | null => {
+        if (sermon.series == null) {
+            return null;
+        }
+        if (sermon.series.subtitle != null) {
+            return `${sermon.series.title}: ${sermon.series.subtitle}`;
+        }
+        return sermon.series.title;
+    })();
+    const passageSummary =
+        sermon.passages.length > 0 ? sermon.passages.join(", ") : null;
+    const speakerSummary =
+        sermon.speakers.length > 0 ? sermon.speakers.join(", ") : null;
 
-    var description = longSeriesTitle;
-    if (sermon.passage) {
-        description = sermon.passage + " – " + description;
-    }
+    const description = joinNonNullish(
+        [
+            joinNonNullish([speakerSummary, sermon.event], " – "),
+            longSeriesTitle,
+            passageSummary, // already in episode title so doesn't need to be prominent
+        ],
+        "\n"
+    );
 
-    let customElements: { [key: string]: string } = {
-        "ccm:author": sermon.author,
-        "ccm:seriesname": sermon.seriesTitle,
-    };
+    const customElements = (() => {
+        const dict: Record<string, string> = {};
 
-    if (sermon.seriesSubtitle) {
-        customElements["ccm:seriessubtitle"] = sermon.seriesSubtitle;
-    }
+        if (speakerSummary != null) {
+            dict["ccm:author"] = speakerSummary;
+        }
 
-    if (sermon.passage) {
-        customElements["ccm:biblepassage"] = sermon.passage;
-    }
-    customElements["ccm:event"] = sermon.event;
+        if (sermon.series != null) {
+            dict["ccm:seriesname"] = sermon.series.title;
+
+            if (sermon.series.subtitle != null) {
+                dict["ccm:seriessubtitle"] = sermon.series.subtitle;
+            }
+        }
+
+        if (passageSummary != null) {
+            dict["ccm:biblepassage"] = passageSummary;
+        }
+
+        if (sermon.event != null) {
+            dict["ccm:event"] = sermon.event;
+        }
+        return dict;
+    })();
 
     const title = (() => {
-        if (sermon.passage != null) {
-            return `${sermon.passage} – ${sermon.title}`;
+        if (passageSummary != null) {
+            return `${sermon.title} – ${passageSummary}`;
         }
         return sermon.title;
     })();
     return {
         title,
         mediaUrl: sermon.link,
-        description: description,
-        author: sermon.author,
-        durationInSeconds: sermon.duration,
+        description,
+        author: speakerSummary ?? "Christ Church Mayfair",
+        durationInSeconds: sermon.duration ?? 1800, // default to 30 mins if we don't know
         releaseDate: sermon.preachedAt,
-        keywords: ["Sermon", sermon.author, sermon.event, longSeriesTitle],
-        customElements: customElements,
+        keywords: [
+            "Sermon",
+            speakerSummary,
+            sermon.event,
+            longSeriesTitle,
+        ].filter((a): a is string => a != null),
+        customElements,
     };
+}
+
+function joinNonNullish(
+    strings: (string | null | undefined)[],
+    separator: string
+): string {
+    return strings.filter(Boolean).join(separator);
 }
