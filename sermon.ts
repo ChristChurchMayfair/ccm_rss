@@ -27,7 +27,6 @@ export type Sermon = {
     preachedAt: string;
     duration: number;
     link: string;
-    imageUrl?: string;
     author: string;
     event: string;
 };
@@ -81,7 +80,6 @@ export function convertSermonToEpisode(sermon: Sermon): Episode {
         title,
         mediaUrl: sermon.link,
         description: description,
-        imageUrl: sermon.imageUrl,
         author: sermon.author,
         durationInSeconds: sermon.duration,
         releaseDate: sermon.preachedAt,
