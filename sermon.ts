@@ -18,18 +18,6 @@ type SanitySermon = {
     url: string;
 };
 
-type BasicSermon = {
-    id: string;
-    title: string;
-    passage?: string;
-    seriesId: string;
-    preachedAt: string;
-    durationInSeconds: number;
-    link: string;
-    authorIds: string[];
-    eventId: string;
-};
-
 export type Sermon = {
     id: string;
     title: string;
