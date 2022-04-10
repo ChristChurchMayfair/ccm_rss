@@ -127,6 +127,16 @@ const formatDuration = (durationInSeconds: number) => {
     return `${mins}:${formattedSecs}`;
 };
 
+/**
+ * Formats a multiline string as HTML with <br>s instead. Bit hacky but works ok.
+ */
+const toHtml = (input: string): string => {
+    return input
+        .split("\n")
+        .map((s) => `<p>${s}</p>`)
+        .join("");
+};
+
 const createItem = (
     parent: any,
     episode: Episode,
@@ -134,10 +144,11 @@ const createItem = (
 ) => {
     const item = parent.ele("item");
     item.ele("title", episode.title);
+    const description = toHtml(episode.description);
 
-    item.ele("description", episode.description);
-    item.ele("itunes:subtitle", episode.description);
-    item.ele("itunes:summary", episode.description);
+    item.ele("description").dat(description);
+    item.ele("itunes:subtitle").dat(description);
+    item.ele("itunes:summary").dat(description);
     item.ele("itunes:keywords", episode.keywords.join(", "));
     item.ele(
         "pubDate",
