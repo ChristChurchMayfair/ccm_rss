@@ -7,7 +7,7 @@ export const ccmSanityClient = sanityClient({
 });
 
 export const sanitySermonQuery =
-    '*[_type == "sermon"] {..., series->, speakers[]->, event->}';
+    '*[_type == "sermon" && url != null] | order(preachedAt desc) {..., series->, speakers[]->, event->}';
 export const sanityBasicSermonQuery = '*[_type == "sermon"]';
 export const sanityPeopleQuery = '*[_type == "person"]';
 export const sanitySermonEventQuery = '*[_type == "sermonEvent"]';

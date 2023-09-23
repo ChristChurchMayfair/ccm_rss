@@ -43,7 +43,7 @@ writeToFile(londonLivingXml, publishDirectory, "londonliving.xml");
 // Create sermons RSS from Sanity
 ccmSanityClient
     .fetch(sanitySermonQuery)
-    .then((result) => result.map(parseSermonFromSanityResponse))
+    .then((result) => result.filter((obj:any) => obj.url !== undefined).map(parseSermonFromSanityResponse))
     .then((sermons) => sermons.map(convertSermonToEpisode))
     .then((episodes) =>
         writeEpisodesToFile(
@@ -55,5 +55,6 @@ ccmSanityClient
     )
     .catch((error) => {
         console.log("There was an error fetching the sermon data from sanity");
+        console.log(error)
         process.exit(1); // Exit with non zero error code to indicate this should not be published.
     });
