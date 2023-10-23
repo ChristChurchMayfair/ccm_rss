@@ -25,6 +25,8 @@ type SanitySermon = {
     }[];
     title: string;
     url: string;
+    youtubeVideoSermonStartTimestamp: string | null
+    youtubeVideoSermonEndTimestamp: string | null
 };
 
 export type Sermon = {
@@ -44,6 +46,16 @@ export type Sermon = {
 export function parseSermonFromSanityResponse(
     sanitySermon: SanitySermon
 ): Sermon {
+    var durationInSeconds: number | null = null
+    if (sanitySermon.durationInSeconds != null) {
+        durationInSeconds = sanitySermon.durationInSeconds ?? null
+    } else if (sanitySermon.youtubeVideoSermonEndTimestamp != null && sanitySermon.youtubeVideoSermonStartTimestamp != null) {
+        const startParts = sanitySermon.youtubeVideoSermonStartTimestamp.split(":").map(part => parseInt(part))
+        const endParts = sanitySermon.youtubeVideoSermonEndTimestamp.split(":").map(part => parseInt(part))
+        const start = (startParts[0] * 60 * 60) + (startParts[1] * 60) + startParts[2]
+        const end = (endParts[0] * 60 * 60) + (endParts[1] * 60) + endParts[2]
+        durationInSeconds = end - start
+    }
     return {
         title: sanitySermon.title,
         series:
@@ -54,7 +66,7 @@ export function parseSermonFromSanityResponse(
                   }
                 : null,
         preachedAt: sanitySermon.preachedAt,
-        duration: sanitySermon.durationInSeconds ?? null,
+        duration: durationInSeconds,
         link: sanitySermon.url,
         speakers:
             sanitySermon.speakers?.map((s) => {
