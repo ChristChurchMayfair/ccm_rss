@@ -104,7 +104,7 @@ export const createXml = (
         channel.ele("itunes:keywords");
         channel.ele("media:keywords");
     }
-    channel.ele("itunes:explicit", config.explicit ? "yes" : "no");
+    channel.ele("itunes:explicit", config.explicit ? "true" : "false");
     channel.ele("media:rating", { scheme: "urn:simple" }, config.rating);
     channel.ele("generator", config.generator);
 
