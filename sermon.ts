@@ -69,7 +69,9 @@ export function parseSermonFromSanityResponse(
         duration: durationInSeconds,
         link: sanitySermon.url,
         speakers:
-            sanitySermon.speakers?.map((s) => {
+            sanitySermon.speakers
+            ?.filter((s) => s !== null)
+            .map((s) => {
                 return {
                     name: s.name,
                     jobTitle: s.jobTitle ?? null,
